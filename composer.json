@@ -1,0 +1,12 @@
+{
+  "name": "eloirobe/fw",
+  "type": "project",
+  "require": {
+    "php": ">=5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Fw\\": "src/Fw"
+    }
+  }
+}
