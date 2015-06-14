@@ -1,6 +1,6 @@
 <?php
 
-namespace Fw\Components;
+namespace Fw;
 
 use Fw\Components\Routing\RouteParser;
 
@@ -15,7 +15,7 @@ final class Application
         var_dump($keys);
     }
 
-    function setRouting (RouteParse $routing_component)
+    function setRouting (RouteParser $routing_component)
     {
         $this->routing_component=$routing_component;
     }
