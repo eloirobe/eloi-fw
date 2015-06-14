@@ -1,8 +1,8 @@
 <?php
 
-namespace Fw;
+namespace Fw\Components;
 
-use Routing\RouteParse;
+use Fw\Components\Routing\RouteParser;
 
 final class Application
 {

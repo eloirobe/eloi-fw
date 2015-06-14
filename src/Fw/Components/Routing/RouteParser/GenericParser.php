@@ -6,9 +6,9 @@
  * Time: 20:47
  */
 
-namespace RouteParser;
+namespace Fw\Components\Routing\RouteParser;
 
-use Routing\RouteParser;
+use Fw\Components\Routing\RouteParser;
 
 abstract class GenericParser implements RouteParser{
 

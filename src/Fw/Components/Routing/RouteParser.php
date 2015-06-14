@@ -6,7 +6,7 @@
  * Time: 15:00
  */
 
-namespace Routing;
+namespace Fw\Components\Routing;
 
 
 interface  RouteParser {

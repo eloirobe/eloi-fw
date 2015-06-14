@@ -6,7 +6,7 @@
  * Time: 20:54
  */
 
-namespace RouteParser;
+namespace Fw\Components\Routing\RouteParser;
 
 
 class jsonParser extends GenericParser {

@@ -6,11 +6,9 @@
  * Time: 15:01
  */
 
-namespace RouteParser;
+namespace Fw\Components\Routing\RouteParser;
 use Symfony\Component\Yaml\Parser;
 
-
-use Routing\RouteParser;
 
 class ymlParser extends GenericParser{
 
