@@ -16,10 +16,10 @@ final class Application
 
     public function run()
     {
-        echo "Bye earth! Welcome to universe";
+
         $key=$this->routing_component->parse($this->path_info);
-        $key=$this->dispatcher_component->dispatch($key);
-        var_dump($key);
+        return $this->dispatcher_component->dispatch($key);
+
     }
 
     function setPathInfo($path_info)
