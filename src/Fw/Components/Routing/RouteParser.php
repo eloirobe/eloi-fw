@@ -11,6 +11,6 @@ namespace Fw\Components\Routing;
 
 interface  RouteParser {
 
-    public function parse();
+    public function parse($path_info);
 
 }

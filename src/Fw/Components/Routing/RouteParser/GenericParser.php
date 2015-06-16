@@ -12,14 +12,24 @@ use Fw\Components\Routing\RouteParser;
 
 abstract class GenericParser implements RouteParser{
 
-    protected $toparse;
+    public $array;
 
-    function __construct($toparse)
+    public function setArray($array)
     {
-        $this->toparse=$toparse;
+        $this->array = $array;
     }
 
-    abstract public function parse();
+
+    public function parse($path_info){
+
+        foreach ($this->array as $key=>$value)
+        {
+            if ($value['route']==$path_info){
+                return $key;
+            }
+        }
+
+    }
 
 
 }

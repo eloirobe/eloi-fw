@@ -7,19 +7,31 @@
  */
 
 namespace Fw\Components\Routing\RouteParser;
+use Fw\Components\Routing\RouteParser;
 use Symfony\Component\Yaml\Parser;
 
 
-class ymlParser extends GenericParser{
+class ymlParser implements  RouteParser{
 
-    public function parse()
+    private $genparse;
+    private $toparse;
+
+
+    function __construct(GenericParser $genparse,$toparse)
+    {
+        $this->genparse=$genparse;
+        $this->toparse=$toparse;
+    }
+
+    public function parse($path_info)
     {
         try {
 
             $yaml = new Parser();
-            $value = $yaml->parse(file_get_contents($this->toparse));
+            $array = $yaml->parse(file_get_contents($this->toparse));
+            $this->genparse->setArray($array);
 
-            return $value;
+            return $this->genparse->parse($path_info);
 
         } catch (ParseException $e) {
             printf("Unable to parse the YAML string: %s", $e->getMessage());
