@@ -10,7 +10,7 @@ namespace Fw\Components\Routing\RouteParser;
 
 use Fw\Components\Routing\RouteParser;
 
-abstract class GenericParser implements RouteParser{
+class GenericParser implements RouteParser{
 
     public $array;
 

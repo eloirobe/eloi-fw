@@ -18,7 +18,8 @@ final class Application
     {
         echo "Bye earth! Welcome to universe";
         $key=$this->routing_component->parse($this->path_info);
-        $this->dispatcher_component->dispatch($key);
+        $key=$this->dispatcher_component->dispatch($key);
+        var_dump($key);
     }
 
     function setPathInfo($path_info)
@@ -32,7 +33,7 @@ final class Application
     }
 
 
-    function setDispatcher (GenericDispatcher $dispatcher_component)
+    function setDispatcher (Dispatcher $dispatcher_component)
     {
         $this->dispatcher_component=$dispatcher_component;
     }

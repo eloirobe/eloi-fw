@@ -17,7 +17,7 @@ class httpJsonDispatcher implements Dispatcher {
     public function dispatch($key)
     {
         $yaml = new Parser();
-        $array = $yaml->parse(file_get_contents($this->toparse));
+        $array = $yaml->parse(file_get_contents($this->filecontrollers));
         $this->gendispatcher->setArray($array);
         return $this->gendispatcher->dispatch($key);
     }
