@@ -17,7 +17,7 @@ class ymlParser implements  RouteParser{
     private $toparse;
 
 
-    function __construct(GenericParser $genparse,$toparse)
+    function __construct($toparse,GenericParser $genparse)
     {
         $this->genparse=$genparse;
         $this->toparse=$toparse;

@@ -3,7 +3,7 @@
 namespace Fw;
 
 
-use Fw\Components\Dispatcher\GenericDispatcher;
+use Fw\Components\Dispatcher\Dispatcher;
 use Fw\Components\Routing\RouteParser;
 
 final class Application
