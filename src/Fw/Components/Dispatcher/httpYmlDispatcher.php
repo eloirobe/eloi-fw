@@ -1,6 +1,6 @@
 <?php
 namespace Fw\Components\Dispatcher;
-use Fw\Components\Response\Request;
+use Fw\Components\Request\Request;
 use Symfony\Component\Yaml\Parser;
 
 
