@@ -3,7 +3,7 @@ namespace Fw\Components\Dispatcher;
 use Symfony\Component\Yaml\Parser;
 
 
-class httpJsonDispatcher implements Dispatcher {
+class httpYmlDispatcher implements Dispatcher {
 
     private $gendispatcher;
     private $filecontrollers;
