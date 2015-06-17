@@ -21,7 +21,7 @@ class httpYmlDispatcher implements Dispatcher {
         $this->gendispatcher->setArray($array);
         $cont=$this->gendispatcher->dispatch($key);
         $controller=new $cont;
-        $controller(new Request($_GET,$_POST,$_SERVER));
+        $controller();
     }
 
 
