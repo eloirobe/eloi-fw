@@ -8,6 +8,8 @@
 
 namespace Fw\Components\Controller;
 
+use Fw\Components\Request\Request;
+
 interface Controller {
 
    function __invoke(Request $request);

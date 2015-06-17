@@ -6,7 +6,7 @@
  * Time: 20:09
  */
 
-namespace Fw\Components\Response;
+namespace Fw\Components\Request;
 
 class Request implements ArrayAccess {
     private $container = array();
