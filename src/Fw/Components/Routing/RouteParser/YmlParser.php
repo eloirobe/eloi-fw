@@ -11,7 +11,7 @@ use Fw\Components\Routing\RouteParser;
 use Symfony\Component\Yaml\Parser;
 
 
-class ymlParser implements  RouteParser{
+class YmlParser implements  RouteParser{
 
     private $genparse;
     private $toparse;
