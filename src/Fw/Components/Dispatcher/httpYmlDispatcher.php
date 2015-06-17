@@ -1,5 +1,6 @@
 <?php
 namespace Fw\Components\Dispatcher;
+use Fw\Components\Response\Request;
 use Symfony\Component\Yaml\Parser;
 
 
@@ -21,7 +22,7 @@ class httpYmlDispatcher implements Dispatcher {
         $this->gendispatcher->setArray($array);
         $cont=$this->gendispatcher->dispatch($key);
         $controller=new $cont;
-        $controller();
+        $controller(new Request(array($_GET,$_POST,$_SERVER,$_FILES)));
     }
 
 
