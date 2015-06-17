@@ -18,7 +18,7 @@ final class Application
     {
 
         $key=$this->routing_component->parse($this->path_info);
-        return $this->dispatcher_component->dispatch($key);
+        $this->dispatcher_component->dispatch($key);
 
     }
 

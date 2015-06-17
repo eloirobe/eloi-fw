@@ -19,7 +19,9 @@ class httpYmlDispatcher implements Dispatcher {
         $yaml = new Parser();
         $array = $yaml->parse(file_get_contents($this->filecontrollers));
         $this->gendispatcher->setArray($array);
-        return $this->gendispatcher->dispatch($key);
+        $cont=$this->gendispatcher->dispatch($key);
+        $controller=new $cont;
+        $controller(new Request($_GET,$_POST,$_SERVER));
     }
 
 
