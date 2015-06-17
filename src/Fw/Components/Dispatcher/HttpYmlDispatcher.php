@@ -4,7 +4,7 @@ use Fw\Components\Request\Request;
 use Symfony\Component\Yaml\Parser;
 
 
-class httpYmlDispatcher implements Dispatcher {
+class HttpYmlDispatcher implements Dispatcher {
 
 
     private $gendispatcher;
