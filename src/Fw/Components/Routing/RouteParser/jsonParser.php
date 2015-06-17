@@ -11,7 +11,7 @@ namespace Fw\Components\Routing\RouteParser;
 
 
 
-class jsonParser extends GenericParser {
+class JsonParser extends GenericParser {
 
     private $genparse;
     private $toparse;
