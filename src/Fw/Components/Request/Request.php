@@ -8,7 +8,7 @@
 
 namespace Fw\Components\Request;
 
-class Request implements ArrayAccess {
+class Request implements \ArrayAccess {
     private $container = array();
 
     public function __construct($array) {
