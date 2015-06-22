@@ -6,7 +6,7 @@
  * Time: 15:45
  */
 
-namespace Fw\Components\Controller;
+namespace Fw\Components\View;
 
 interface View {
 

@@ -8,6 +8,7 @@
 
 namespace Fw\Components\View;
 
+
 interface WebView extends  View{
 
 }
