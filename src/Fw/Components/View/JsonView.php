@@ -34,7 +34,4 @@ class JsonView implements View {
     }
 
 
-
-
-
 }
