@@ -23,13 +23,15 @@ class HttpYmlDispatcher implements Dispatcher {
         $this->gendispatcher->setArray($array);
         $cont=$this->gendispatcher->dispatch($key);
         $controller=new $cont;
-        $controller(new Request(
+        $response=$controller(new Request(
                                 array(
                                     "get"=>$_GET,
                                     "post"=>$_POST,
                                     "server"=>$_SERVER,
                                     "files"=>$_FILES)
                     ));
+
+        return $response;
     }
 
 
