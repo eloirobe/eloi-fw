@@ -11,7 +11,7 @@ namespace Fw\Components\View;
 class WebViewTwig implements WebView {
 
     private $twig;
-    private $plantilla;
+    private $template;
     private $content;
 
     function __construct($twig)
@@ -21,23 +21,23 @@ class WebViewTwig implements WebView {
     public function render()
     {
 
-        echo $this->twig->render($this->plantilla, $this->content);
+        echo $this->twig->render($this->template, $this->content);
 
     }
     /**
      * @return mixed
      */
-    public function getPlantilla()
+    public function getTemplate()
     {
-        return $this->plantilla;
+        return $this->template;
     }
 
     /**
-     * @param mixed $plantilla
+     * @param mixed $template
      */
-    public function setPlantilla($plantilla)
+    public function setTemplate($template)
     {
-        $this->plantilla = $plantilla;
+        $this->template = $template;
     }
 
     /**
