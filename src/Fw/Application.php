@@ -59,7 +59,7 @@ final class Application
 
     function setJsonComponent ( JsonView $jsoncomponent )
     {
-        $this->$jsoncomponent=$jsoncomponent;
+        $this->jsoncomponent=$jsoncomponent;
     }
 
 }
