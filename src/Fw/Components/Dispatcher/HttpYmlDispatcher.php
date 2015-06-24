@@ -38,7 +38,7 @@ class HttpYmlDispatcher implements Dispatcher {
                                     "post"=>$_POST,
                                     "server"=>$_SERVER,
                                     "files"=>$_FILES)
-                    ),$this->$mypdo);
+                    ),$this->mypdo);
 
         return $response;
     }
