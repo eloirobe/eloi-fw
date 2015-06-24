@@ -9,11 +9,20 @@ class HttpYmlDispatcher implements Dispatcher {
 
     private $gendispatcher;
     private $filecontrollers;
+    private $mypdo;
 
     function __construct($filecontrollers,GenericDispatcher $gendispatcher)
     {
         $this->gendispatcher=$gendispatcher;
         $this->filecontrollers=$filecontrollers;
+    }
+
+    /**
+     * @param mixed $mypdo
+     */
+    public function setMypdo($mypdo)
+    {
+        $this->mypdo = $mypdo;
     }
 
     public function dispatch($key)
