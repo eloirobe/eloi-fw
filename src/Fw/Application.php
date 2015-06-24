@@ -18,12 +18,14 @@ final class Application
     private $path_info;
     private $webcomponent;
     private $jsoncomponent;
+    private $mypdo;
 
 
 
     public function run()
     {
         $key=$this->routing_component->parse($this->path_info);
+        $this->dispatcher_component->setMypdo($this->mypdo);
         $response=$this->dispatcher_component->dispatch($key);
 
        if ( $response instanceof WebResponse){
@@ -61,6 +63,12 @@ final class Application
     {
         $this->jsoncomponent=$jsoncomponent;
     }
+
+    public function setMypdo($mypdo)
+    {
+        $this->mypdo = $mypdo;
+    }
+
 
 }
 

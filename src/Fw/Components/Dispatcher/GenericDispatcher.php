@@ -13,6 +13,7 @@ class GenericDispatcher implements Dispatcher{
 
 
     private $array;
+    private $mypdo;
 
     /**
      * @param mixed $array
@@ -20,6 +21,14 @@ class GenericDispatcher implements Dispatcher{
     public function setArray($array)
     {
         $this->array = $array;
+    }
+
+    /**
+     * @param mixed $mypdo
+     */
+    public function setMypdo($mypdo)
+    {
+        $this->mypdo = $mypdo;
     }
 
 
