@@ -5,6 +5,7 @@
  * Date: 25/6/15
  * Time: 19:24
  */
+namespace Fw\Components\Container;
 
 use Symfony\Component\Yaml\Parser;
 
