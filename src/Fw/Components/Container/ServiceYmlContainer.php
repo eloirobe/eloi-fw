@@ -19,7 +19,6 @@ class ServiceYmlContainer {
     {
         $yaml = new Parser();
         $this->yaml = $yaml->parse(file_get_contents($route));
-        var_dump($this->yaml);
     }
 
     function get($servicename)
@@ -34,11 +33,15 @@ class ServiceYmlContainer {
             $tmpserviceargument=$this->get($o);
 
             //replace $o by $tmpserviceargument
-            $servicesarguments["@".$o]=$tmpserviceargument;
+            $i = array_search("@".$o, $servicesarguments);
+            $servicesarguments[$i]=$tmpserviceargument;
 
         }
 
-        return new $currentservice['class']($servicesarguments);
+        $class= new \ReflectionClass($currentservice['class']);
+        $instance = $class->newInstanceArgs($servicesarguments);
+        return $instance;
+        //return new $currentservice['class']($servicesarguments);
 
 
     }
@@ -58,9 +61,9 @@ class ServiceYmlContainer {
     {
         $tmp=array();
         foreach ($params as $p){
-            if (preg_match_all('/\%(.*?)\%/',$p,$match)) {
-                $serviceparam=$this->parameters[$match];
-                $tmp[]=$serviceparam;
+            if (preg_match('/\%(.*?)\%/',$p,$match)) {
+                $serviceparam=$this->parameters[$match[1]];
+                $tmp[]=str_replace($match[0],$serviceparam,$p);
             }else{
                 $tmp[]=$p;
             }
