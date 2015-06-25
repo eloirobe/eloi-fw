@@ -9,6 +9,7 @@ use Fw\Components\Response\JsonResponse;
 use Fw\Components\Response\WebResponse;
 use Fw\Components\View\JsonView;
 use Fw\Components\View\WebView;
+use Fw\Components\Database\Database;
 
 
 final class Application
@@ -64,7 +65,7 @@ final class Application
         $this->jsoncomponent=$jsoncomponent;
     }
 
-    public function setMypdo($mypdo)
+    public function setMypdo(Database $mypdo)
     {
         $this->mypdo = $mypdo;
     }
