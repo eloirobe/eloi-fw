@@ -63,7 +63,12 @@ class ServiceYmlContainer implements Container {
         foreach ($params as $p){
             if (preg_match('/\%(.*?)\%/',$p,$match)) {
                 $serviceparam=$this->parameters[$match[1]];
-                $tmp[]=str_replace($match[0],$serviceparam,$p);
+                if (gettype($serviceparam)=="string"){
+                    $tmp[]=str_replace($match[0],$serviceparam,$p);
+                }else{
+                    $tmp[]=$serviceparam;
+                }
+
             }else{
                 $tmp[]=$p;
             }
