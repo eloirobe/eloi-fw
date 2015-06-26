@@ -3,6 +3,7 @@
 namespace Fw;
 
 
+use Fw\Components\Container\Container;
 use Fw\Components\Dispatcher\Dispatcher;
 use Fw\Components\Routing\RouteParser;
 use Fw\Components\Response\JsonResponse;
@@ -20,55 +21,67 @@ final class Application
     private $webcomponent;
     private $jsoncomponent;
     private $mypdo;
-
+    private $container;
 
 
     public function run()
     {
-        $key=$this->routing_component->parse($this->path_info);
-        $this->dispatcher_component->setMypdo($this->mypdo);
-        $response=$this->dispatcher_component->dispatch($key);
+        $this->routing_component=$this->container->get('Database');
+        $this->dispatcher_component=$this->container->get('Dispatcher');
+        $this->jsoncomponent=$this->container->get('JsonView');
+        $this->webcomponent=$this->container->get('WebViewTwig');
+        $this->mypdo=$this->container->get('MyPdo');
 
-       if ( $response instanceof WebResponse){
+        $key = $this->routing_component->parse($this->path_info);
+        $this->dispatcher_component->setMypdo($this->mypdo);
+        $response = $this->dispatcher_component->dispatch($key);
+
+        if ($response instanceof WebResponse) {
             $this->webcomponent->setTemplate($response->getTemplate());
             $this->webcomponent->setContent($response->getContent());
             $this->webcomponent->render();
 
-       }elseif ( $response instanceof JsonResponse) {
+        } elseif ($response instanceof JsonResponse) {
             $this->jsoncomponent->setContent($response->getContent());
             $this->jsoncomponent->render();
-       }
+        }
     }
 
     function setPathInfo($path_info)
     {
-        $this->path_info=$path_info;
+        $this->path_info = $path_info;
     }
 
-    function setRouting (RouteParser $routing_component)
+    function setRouting(RouteParser $routing_component)
     {
-        $this->routing_component=$routing_component;
+        $this->routing_component = $routing_component;
     }
 
-    function setDispatcher (Dispatcher $dispatcher_component)
+    function setDispatcher(Dispatcher $dispatcher_component)
     {
-        $this->dispatcher_component=$dispatcher_component;
+        $this->dispatcher_component = $dispatcher_component;
     }
 
-    function setWebComponent ( WebView $webcomponent )
+    function setWebComponent(WebView $webcomponent)
     {
-        $this->webcomponent=$webcomponent;
+        $this->webcomponent = $webcomponent;
     }
 
-    function setJsonComponent ( JsonView $jsoncomponent )
+    function setJsonComponent(JsonView $jsoncomponent)
     {
-        $this->jsoncomponent=$jsoncomponent;
+        $this->jsoncomponent = $jsoncomponent;
     }
 
     public function setMypdo(Database $mypdo)
     {
         $this->mypdo = $mypdo;
     }
+
+    public function setContainer(Container $container)
+    {
+        $this->container=$container;
+    }
+
 
 
 }

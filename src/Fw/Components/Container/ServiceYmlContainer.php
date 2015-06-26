@@ -9,7 +9,7 @@ namespace Fw\Components\Container;
 
 use Symfony\Component\Yaml\Parser;
 
-class ServiceYmlContainer {
+class ServiceYmlContainer implements Container {
 
     private $yaml;
     private $parameters;
@@ -46,7 +46,7 @@ class ServiceYmlContainer {
 
     }
 
-    function getServicesFromArguments($arguments)
+    private function getServicesFromArguments($arguments)
     {
         $tmp=array();
         foreach ($arguments as $c){
@@ -57,7 +57,7 @@ class ServiceYmlContainer {
         return $tmp;
     }
 
-    function updateParametersArguments($params)
+    private function updateParametersArguments($params)
     {
         $tmp=array();
         foreach ($params as $p){
