@@ -44,8 +44,6 @@ class GenericDispatcher implements Dispatcher{
                     foreach ($values as $v)$tmpval[]=$v[0];
                     $keyvars=$_keyvars[1];
                     $this->values=array_combine($keyvars,$tmpval);
-                    var_dump($this->values);
-                    var_dump($value["controller"]);
                     return $value["controller"];
 
                 }
