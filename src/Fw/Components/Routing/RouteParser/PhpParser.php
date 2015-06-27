@@ -2,16 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: Eloi
- * Date: 14/6/15
- * Time: 20:54
+ * Date: 28/6/15
+ * Time: 0:03
  */
 
 namespace Fw\Components\Routing\RouteParser;
 
 
-
-
-class JsonParser extends GenericParser {
+class PhpParser extends GenericParser
+{
 
     private $genparse;
     private $toparse;
@@ -19,20 +18,18 @@ class JsonParser extends GenericParser {
 
     function __construct($toparse,GenericParser $genparse)
     {
-        $this->genparse=$genparse;
-        $this->toparse=$toparse;
+        $this->genparse = $genparse;
+        $this->toparse = $toparse;
     }
 
     public function parse($path_info)
     {
 
-        $json = json_decode(file_get_contents($this->toparse), true);
-
-        $this->genparse->setArray($json);
+        require $path_info;
+        $this->genparse->setArray($routing);
 
         return $this->genparse->parse($path_info);
 
 
     }
-
 }
