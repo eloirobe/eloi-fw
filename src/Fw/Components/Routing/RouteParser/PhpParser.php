@@ -25,7 +25,7 @@ class PhpParser extends GenericParser
     public function parse($path_info)
     {
 
-        require $path_info;
+        require $this->toparse;
         $this->genparse->setArray($routing);
 
         return $this->genparse->parse($path_info);
