@@ -8,11 +8,11 @@
 
 namespace Fw\Components\Controller;
 
-use Fw\Components\Database\Database;
+use Fw\Components\Container\Container;
 use Fw\Components\Request\Request;
 
 interface Controller {
 
-   function __invoke(Request $request,Database $mypdo);
+   function __invoke(Request $request,Container $container);
 
 }

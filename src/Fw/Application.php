@@ -26,22 +26,23 @@ final class Application
 
     public function run()
     {
-        $this->routing_component=$this->container->get('Database');
+        $this->routing_component=$this->container->get('Routing');
         $this->dispatcher_component=$this->container->get('Dispatcher');
-        $this->jsoncomponent=$this->container->get('JsonView');
-        $this->webcomponent=$this->container->get('WebViewTwig');
-        $this->mypdo=$this->container->get('MyPdo');
+
 
         $key = $this->routing_component->parse($this->path_info);
         $this->dispatcher_component->setMypdo($this->mypdo);
+        $this->dispatcher_component->setConatiner($this->container);
         $response = $this->dispatcher_component->dispatch($key);
 
         if ($response instanceof WebResponse) {
+            $this->webcomponent=$this->container->get('WebViewTwig');
             $this->webcomponent->setTemplate($response->getTemplate());
             $this->webcomponent->setContent($response->getContent());
             $this->webcomponent->render();
 
         } elseif ($response instanceof JsonResponse) {
+            $this->jsoncomponent=$this->container->get('JsonView');
             $this->jsoncomponent->setContent($response->getContent());
             $this->jsoncomponent->render();
         }

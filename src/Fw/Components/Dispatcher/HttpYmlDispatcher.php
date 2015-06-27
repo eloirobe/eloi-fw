@@ -10,6 +10,7 @@ class HttpYmlDispatcher implements Dispatcher {
     private $gendispatcher;
     private $filecontrollers;
     private $mypdo;
+    private $dispatcher;
 
     function __construct($filecontrollers,GenericDispatcher $gendispatcher)
     {
@@ -38,10 +39,17 @@ class HttpYmlDispatcher implements Dispatcher {
                                     "post"=>$_POST,
                                     "server"=>$_SERVER,
                                     "files"=>$_FILES)
-                    ),$this->mypdo);
+                    ),$this->dispatcher);
 
         return $response;
     }
 
+    /**
+     * @param mixed $dispatcher
+     */
+    public function setDispatcher($dispatcher)
+    {
+        $this->dispatcher = $dispatcher;
+    }
 
 }
