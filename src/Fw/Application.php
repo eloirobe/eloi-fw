@@ -32,7 +32,7 @@ final class Application
 
         $key = $this->routing_component->parse($this->path_info);
         $this->dispatcher_component->setMypdo($this->mypdo);
-        $this->dispatcher_component->setConatiner($this->container);
+        $this->dispatcher_component->setContainer($this->container);
         $response = $this->dispatcher_component->dispatch($key);
 
         if ($response instanceof WebResponse) {
