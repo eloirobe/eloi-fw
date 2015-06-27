@@ -31,15 +31,17 @@ class HttpYmlDispatcher implements Dispatcher {
         $yaml = new Parser();
         $array = $yaml->parse(file_get_contents($this->filecontrollers));
         $this->gendispatcher->setArray($array);
-        $cont=$this->gendispatcher->dispatch($key);
-        $controller=new $cont;
-        $response=$controller(new Request(
-                                array(
-                                    "get"=>$_GET,
-                                    "post"=>$_POST,
-                                    "server"=>$_SERVER,
-                                    "files"=>$_FILES)
-                    ),$this->container);
+        $cont = $this->gendispatcher->dispatch($key);
+        $controller = new $cont;
+        $response = $controller(new Request(
+            array(
+                "get" => $_GET,
+                "post" => $_POST,
+                "server" => $_SERVER,
+                "files" => $_FILES,
+                "variables" => $this->gendispatcher->getValues()
+            )
+        ), $this->container);
 
         return $response;
     }

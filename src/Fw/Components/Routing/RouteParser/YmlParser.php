@@ -25,17 +25,17 @@ class YmlParser implements  RouteParser{
 
     public function parse($path_info)
     {
-        try {
 
+        try {
             $yaml = new Parser();
             $array = $yaml->parse(file_get_contents($this->toparse));
             $this->genparse->setArray($array);
 
             return $this->genparse->parse($path_info);
-
-        } catch (ParseException $e) {
-            printf("Unable to parse the YAML string: %s", $e->getMessage());
+        }catch (\Exception $e){
+            echo $e->getMessage();
         }
+
     }
 
 
