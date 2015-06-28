@@ -35,7 +35,7 @@ final class Application
         $response = $this->dispatcher_component->dispatch($key);
 
         if ($response instanceof WebResponse) {
-            $this->webcomponent=$this->container->get('WebViewTwig');
+            $this->webcomponent=$this->container->get('WebView');
             $this->webcomponent->setTemplate($response->getTemplate());
             $this->webcomponent->setContent($response->getContent());
             $this->webcomponent->render();
