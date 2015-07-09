@@ -9,7 +9,9 @@
 namespace Fw\Components\Routing\RouteParser;
 
 
-class PhpParser extends GenericParser
+use Fw\Components\Routing\RouteParser;
+
+class PhpParser implements RouteParser
 {
 
     private $genparse;
