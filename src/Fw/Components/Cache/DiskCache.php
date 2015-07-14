@@ -11,8 +11,12 @@ class DiskCache implements  Cache{
     function __construct($cache_file)
     {
         $this->cache_file=$cache_file;
-        $this->cache=json_decode(file_get_contents($cache_file));
+        if (!file_exists($this->cache_file)){
+            touch($this->cache_file);
+        }
+        $this->cache=json_decode(file_get_contents($this->cache_file),true);
     }
+
 
     public function set($key, $content, $expiration)
     {
@@ -24,19 +28,26 @@ class DiskCache implements  Cache{
     public function get($key)
     {
         $hash=$this->hashing($key);
-        $data=$this->cache[$hash];
-        if ($this->isTheCacheExpired($data['expiration'])){
-            $this->delete($hash);
-            return false;
-        }else{
-            return $data['content'];
+
+        if (is_null($this->cache)) return null;
+
+        if (array_key_exists($hash,$this->cache)) {
+            $data = $this->cache[$hash];
+            if ($this->isTheCacheExpired($data['expiration'])) {
+                $this->delete($hash);
+
+                return false;
+            } else {
+                return $data['content'];
+            }
         }
+        return false;
     }
 
     public function delete($key)
     {
         $hash=$this->hashing($key);
-        unset ($this->cache_file[$hash]);
+        unset ($this->cache[$hash]);
         file_put_contents($this->cache_file,json_encode($this->cache));
     }
 

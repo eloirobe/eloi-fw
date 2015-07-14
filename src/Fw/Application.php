@@ -51,12 +51,16 @@ final class Application
             $this->webcomponent=$this->container->get('WebView');
             $this->webcomponent->setTemplate($response->getTemplate());
             $this->webcomponent->setContent($response->getContent());
-            echo $this->webcomponent->render();
+            $content = $this->webcomponent->render();
+            $this->cache->set($this->path_info,$content,60);
+            echo $content;
 
         } elseif ($response instanceof JsonResponse) {
             $this->jsoncomponent=$this->container->get('JsonView');
             $this->jsoncomponent->setContent($response->getContent());
-            echo $this->jsoncomponent->render();
+            $content = $this->jsoncomponent->render();
+            $this->cache->set($this->path_info,$content,60);
+            echo $content;
         }
     }
 
