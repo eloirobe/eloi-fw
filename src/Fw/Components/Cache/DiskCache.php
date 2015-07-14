@@ -16,15 +16,17 @@ class DiskCache implements  Cache{
 
     public function set($key, $content, $expiration)
     {
-        $this->cache[$key]=array('content'=>$content,'expiration'=>time()+$expiration);
+        $hash=$this->hashing($key);
+        $this->cache[$hash]=array('content'=>$content,'expiration'=>time()+$expiration);
         file_put_contents($this->cache_file,json_encode($this->cache));
     }
 
     public function get($key)
     {
-        $data=$this->cache[$key];
+        $hash=$this->hashing($key);
+        $data=$this->cache[$hash];
         if ($this->isTheCacheExpired($data['expiration'])){
-            $this->delete($key);
+            $this->delete($hash);
             return false;
         }else{
             return $data['content'];
@@ -33,13 +35,18 @@ class DiskCache implements  Cache{
 
     public function delete($key)
     {
-        unset ($this->cache_file[$key]);
+        $hash=$this->hashing($key);
+        unset ($this->cache_file[$hash]);
         file_put_contents($this->cache_file,json_encode($this->cache));
     }
 
     private function isTheCacheExpired($expiration)
     {
         return time()>$expiration;
+    }
+    private function hashing($key)
+    {
+        return sha1($key);
     }
 
 
