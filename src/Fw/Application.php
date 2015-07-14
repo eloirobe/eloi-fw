@@ -11,6 +11,7 @@ use Fw\Components\Response\WebResponse;
 use Fw\Components\View\JsonView;
 use Fw\Components\View\WebView;
 use Fw\Components\Database\Database;
+use Fw\Components\Cache;
 
 
 final class Application
@@ -22,14 +23,26 @@ final class Application
     private $jsoncomponent;
     private $mypdo;
     private $container;
+    private $cache;
 
 
     public function run()
     {
         $this->routing_component=$this->container->get('Routing');
         $this->dispatcher_component=$this->container->get('Dispatcher');
+        $this->cache=$this->container->get('Cache');
 
+        $data_cached=$this->cache->get($this->path_info);
 
+        if (!$data_cached){
+            $this->executeWithoutCache();
+        }else{
+            echo $data_cached;
+        }
+    }
+
+    private function executeWithoutCache()
+    {
         $key = $this->routing_component->parse($this->path_info);
         $this->dispatcher_component->setContainer($this->container);
         $response = $this->dispatcher_component->dispatch($key);
@@ -38,14 +51,15 @@ final class Application
             $this->webcomponent=$this->container->get('WebView');
             $this->webcomponent->setTemplate($response->getTemplate());
             $this->webcomponent->setContent($response->getContent());
-            $this->webcomponent->render();
+            echo $this->webcomponent->render();
 
         } elseif ($response instanceof JsonResponse) {
             $this->jsoncomponent=$this->container->get('JsonView');
             $this->jsoncomponent->setContent($response->getContent());
-            $this->jsoncomponent->render();
+            echo $this->jsoncomponent->render();
         }
     }
+
 
     function setPathInfo($path_info)
     {

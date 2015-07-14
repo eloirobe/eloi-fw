@@ -14,7 +14,7 @@ class JsonView implements View {
 
     public function render()
     {
-        echo json_encode($this->content);
+        return json_encode($this->content);
     }
 
     /**

@@ -21,7 +21,7 @@ class WebViewTwig implements WebView {
     public function render()
     {
 
-        echo $this->twig->render($this->template, $this->content);
+        return $this->twig->render($this->template, $this->content);
 
     }
     /**
