@@ -37,12 +37,14 @@ class GenericDispatcher implements Dispatcher{
                 return $value["controller"];
             }else{
                 preg_match_all('(\{(.*?)\})',$key,$_keyvars);
-                $routetocompare=preg_replace('(\{(.*?)\})','(\w+)',$key);
+                $routetocompare=preg_replace('(\{(.*?)\})','([\w|%]+)',$key);
+
                 $routetocompare=str_replace("/","\\/",$routetocompare);
                 if (preg_match_all("/^".$routetocompare."$/",$key_tofind,$matches)>0){
                     $values=array_splice($matches,1);
                     foreach ($values as $v)$tmpval[]=$v[0];
                     $keyvars=$_keyvars[1];
+
                     $this->values=array_combine($keyvars,$tmpval);
                     return $value["controller"];
 

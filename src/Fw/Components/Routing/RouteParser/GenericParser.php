@@ -33,7 +33,7 @@ class GenericParser implements RouteParser{
 
                 /* Reemplazamos lo encontrado con llaves {} por \w+ (\w significa cualquier caracter alfanumerico)
                    Con esto estamos montando la expresion regular */
-                $routetocompare=preg_replace('(\{(.*?)\})','(\w+)',$value['route']);
+                $routetocompare=preg_replace('(\{(.*?)\})','([\w|%]+)',$value['route']);
 
                 /* Reemplazamos la / por \\/ para que funcione bien la expresion regular en el preg_match*/
                 $routetocompare=str_replace("/","\\/",$routetocompare);
