@@ -52,14 +52,14 @@ final class Application
             $this->webcomponent->setTemplate($response->getTemplate());
             $this->webcomponent->setContent($response->getContent());
             $content = $this->webcomponent->render();
-            $this->cache->set($this->path_info,$content,60);
+            $this->cache->set($this->path_info,$content);
             echo $content;
 
         } elseif ($response instanceof JsonResponse) {
             $this->jsoncomponent=$this->container->get('JsonView');
             $this->jsoncomponent->setContent($response->getContent());
             $content = $this->jsoncomponent->render();
-            $this->cache->set($this->path_info,$content,60);
+            $this->cache->set($this->path_info,$content);
             echo $content;
         }
     }
