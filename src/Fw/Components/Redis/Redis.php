@@ -11,8 +11,11 @@ class Redis {
     {
         $this->client=$client;
     }
-    public function execute ($command,$params)
+    public function execute ($command,$params,$options = null )
     {
-        return $this->client->$command($params[0],$params[1]);
+        if ($options==null)
+            return $this->client->$command($params[0],$params[1],$params[2]);
+        else
+            return $this->client->$command($params[0],$params[1],$params[2],$options);
     }
 }
