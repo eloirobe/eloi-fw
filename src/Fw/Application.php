@@ -5,6 +5,7 @@ namespace Fw;
 
 use Fw\Components\Container\Container;
 use Fw\Components\Dispatcher\Dispatcher;
+use Fw\Components\Redis\Redis;
 use Fw\Components\Routing\RouteParser;
 use Fw\Components\Response\JsonResponse;
 use Fw\Components\Response\WebResponse;
@@ -12,6 +13,7 @@ use Fw\Components\View\JsonView;
 use Fw\Components\View\WebView;
 use Fw\Components\Database\Database;
 use Fw\Components\Cache;
+
 
 
 final class Application
@@ -24,6 +26,7 @@ final class Application
     private $mypdo;
     private $container;
     private $cache;
+    private $redis;
 
 
     public function run()
@@ -99,7 +102,10 @@ final class Application
     {
         $this->container=$container;
     }
-
+    public function setRedis (Redis $redis)
+    {
+        $this->redis = $redis;
+    }
 
 
 }
