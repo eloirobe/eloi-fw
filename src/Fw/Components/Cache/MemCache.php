@@ -17,10 +17,11 @@ class MemCache implements  Cache{
 
     public function set($key, $content, $expiration = 0)
     {
-        if ($expiration == 0)
-            $expiration=$this->expiration;
+        if ($expiration == 0) {
+            $expiration = $this->expiration;
+        }
 
-        $this->mem_cache->set($this->hashing($key),$content,time()+$expiration);
+        $this->mem_cache->set($this->hashing($key),$content,$expiration);
     }
 
     public function get($key)
