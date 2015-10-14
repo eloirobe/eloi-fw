@@ -21,11 +21,11 @@ class Sphinx
     }
     public function setLimits ($min,$max)
     {
-        $this->setLimits($min,$max);
+        $this->client->setLimits($min,$max);
     }
     public function setFilter ($attribute,$value)
     {
-        $this->setFilter($attribute,$value);
+        $this->client->setFilter($attribute,$value);
     }
     public function query ($query, $index="*",$comment="")
     {
