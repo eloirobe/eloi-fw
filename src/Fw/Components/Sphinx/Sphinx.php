@@ -23,6 +23,10 @@ class Sphinx
     {
         $this->setLimits($min,$max);
     }
+    public function setFilter ($attribute,$value)
+    {
+        $this->setFilter($attribute,$value);
+    }
     public function query ($query, $index="*",$comment="")
     {
        return $this->client->query($query,$index,$comment);
