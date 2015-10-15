@@ -13,11 +13,12 @@ class Sphinx
     {
         $this->client = $client;
         $this->client->setServer($host,$port);
+        $this->client->SetMatchMode(SphinxClient::SPH_MATCH_EXTENDED2);
     }
 
-    public function setSortMode ($sort_mode,$condition)
+    public function setSortMode ($condition)
     {
-        $this->client->setSortMode($sort_mode,$condition);
+        $this->client->setSortMode(SphinxClient::SPH_SORT_EXTENDED,$condition);
     }
     public function setLimits ($min,$max)
     {
@@ -29,7 +30,7 @@ class Sphinx
     }
     public function query ($query, $index="*",$comment="")
     {
-       return $this->client->query($query,$index,$comment);
+        return $this->client->query($query,$index,$comment);
     }
 
 
